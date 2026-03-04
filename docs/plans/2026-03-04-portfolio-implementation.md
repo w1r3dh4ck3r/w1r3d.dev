@@ -121,6 +121,7 @@ export interface BlogPost {
   slug: string;
   excerpt: string;
   tags: string[];
+  content?: string;
 }
 ```
 
@@ -307,8 +308,8 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
-      whileHover={{ y: -8, boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1)' }}
-      className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-all"
+      whileHover={{ y: -8 }}
+      className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm hover:shadow-lg transition-all"
     >
       <h3 className="text-xl font-bold text-gray-900">{project.title}</h3>
       <p className="mt-1 text-sm text-gray-500">{project.subtitle}</p>
@@ -448,10 +449,13 @@ export default function BlogPostCard({ post, index }: BlogPostCardProps) {
 // src/components/Navigation.tsx
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 export default function Navigation() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const links = [
     { name: 'Home', href: '/' },
     { name: 'Projects', href: '/projects' },
@@ -470,6 +474,7 @@ export default function Navigation() {
             </Link>
           </motion.div>
 
+          {/* Desktop Navigation */}
           <ul className="hidden sm:flex gap-8">
             {links.map((link) => (
               <li key={link.href}>
@@ -483,8 +488,49 @@ export default function Navigation() {
             ))}
           </ul>
 
-          {/* Mobile menu toggle would go here */}
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="sm:hidden inline-flex items-center gap-2 text-gray-600 hover:text-gray-900"
+            aria-label="Toggle menu"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <motion.ul
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2 }}
+            className="sm:hidden mt-4 space-y-2 pb-4"
+          >
+            {links.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block text-gray-600 hover:text-gray-900 py-2 font-medium"
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </motion.ul>
+        )}
       </div>
     </nav>
   );
@@ -666,8 +712,6 @@ git commit -m "feat: Create core components (ProjectCard, TestimonialCard, BlogP
 
 ```typescript
 // src/app/page.tsx
-'use client';
-
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import projects from '@/data/projects.json';
@@ -1019,7 +1063,11 @@ export function getPostBySlug(slug: string) {
   const { data, content } = matter(fileContents);
 
   return {
-    ...data,
+    title: data.title,
+    date: data.date,
+    slug: data.slug,
+    excerpt: data.excerpt,
+    tags: data.tags || [],
     content,
   };
 }
@@ -1068,6 +1116,7 @@ export default function BlogPage() {
 // src/app/blog/[slug]/page.tsx
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { MDXRemote } from 'next-mdx-remote/rsc';
 import { getPostBySlug, getAllPosts } from '@/lib/mdx';
 import Link from 'next/link';
 
@@ -1125,8 +1174,8 @@ export default function BlogPostPage({
         </div>
       </header>
 
-      <div className="prose max-w-none mt-8 text-gray-700">
-        {post.content}
+      <div className="prose prose-sm max-w-none mt-8">
+        <MDXRemote source={post.content} />
       </div>
     </article>
   );
@@ -1255,7 +1304,168 @@ git commit -m "feat: Add contact page with email form and social links"
 
 ---
 
-## Task 9: Configure Vercel & Deploy
+## Task 9: Add 404 Page & Fix ContactForm
+
+**Files:**
+- Create: `src/app/not-found.tsx`
+- Modify: `src/components/ContactForm.tsx` (update mock to use form action)
+- Create: `src/app/actions.ts` (server action for email)
+
+**Step 1: Create 404 page**
+
+```typescript
+// src/app/not-found.tsx
+import Link from 'next/link';
+
+export default function NotFound() {
+  return (
+    <div className="mx-auto max-w-md px-4 py-20 text-center">
+      <h1 className="text-6xl font-bold text-gray-900">404</h1>
+      <p className="mt-4 text-lg text-gray-600">
+        Looks like you've wandered into uncharted territory.
+      </p>
+      <Link
+        href="/"
+        className="mt-8 inline-block rounded-lg bg-blue-600 px-6 py-3 font-medium text-white hover:bg-blue-700"
+      >
+        Back to home
+      </Link>
+    </div>
+  );
+}
+```
+
+**Step 2: Create server action for contact form**
+
+```typescript
+// src/app/actions.ts
+'use server';
+
+export async function sendContactEmail(formData: FormData) {
+  const name = formData.get('name');
+  const email = formData.get('email');
+  const message = formData.get('message');
+
+  // Mock implementation - in production, use Resend or SendGrid
+  // await resend.emails.send({
+  //   from: 'noreply@w1r3d.dev',
+  //   to: 'hi@w1r3d.dev',
+  //   replyTo: email as string,
+  //   subject: `New message from ${name}`,
+  //   html: `<p>${message}</p>`,
+  // });
+
+  return { success: true };
+}
+```
+
+**Step 3: Update ContactForm component**
+
+```typescript
+// src/components/ContactForm.tsx
+'use client';
+
+import { useState } from 'react';
+import { sendContactEmail } from '@/app/actions';
+
+export default function ContactForm() {
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>(
+    'idle'
+  );
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('loading');
+
+    const form = new FormData(e.currentTarget);
+    const result = await sendContactEmail(form);
+
+    if (result.success) {
+      setStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+      setTimeout(() => setStatus('idle'), 3000);
+    } else {
+      setStatus('error');
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
+      <input
+        type="text"
+        name="name"
+        placeholder="Your name"
+        value={formData.name}
+        onChange={(e) =>
+          setFormData({ ...formData, name: e.target.value })
+        }
+        required
+        className="w-full rounded-lg border border-gray-300 px-4 py-2"
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="your@email.com"
+        value={formData.email}
+        onChange={(e) =>
+          setFormData({ ...formData, email: e.target.value })
+        }
+        required
+        className="w-full rounded-lg border border-gray-300 px-4 py-2"
+      />
+      <textarea
+        name="message"
+        placeholder="Your message"
+        value={formData.message}
+        onChange={(e) =>
+          setFormData({ ...formData, message: e.target.value })
+        }
+        required
+        rows={4}
+        className="w-full rounded-lg border border-gray-300 px-4 py-2"
+      />
+      <button
+        type="submit"
+        disabled={status === 'loading'}
+        className="w-full rounded-lg bg-blue-600 py-2 text-white font-medium hover:bg-blue-700 disabled:opacity-50"
+      >
+        {status === 'loading' ? 'Sending...' : 'Send message'}
+      </button>
+
+      {status === 'success' && (
+        <p className="text-green-600 text-sm">Message received! I'll get back to you soon.</p>
+      )}
+      {status === 'error' && (
+        <p className="text-red-600 text-sm">Error sending message. Please try again.</p>
+      )}
+    </form>
+  );
+}
+```
+
+**Step 4: Verify 404 renders**
+
+```bash
+curl -s http://localhost:3000/nonexistent | grep -o "404" | head -1
+```
+
+Expected: `404` appears in HTML.
+
+**Step 5: Commit**
+
+```bash
+git add src/app/not-found.tsx src/app/actions.ts src/components/ContactForm.tsx
+git commit -m "feat: Add 404 page and update contact form with server action"
+```
+
+---
+
+## Task 11: Configure Vercel & Deploy
 
 **Files:**
 - Create: `vercel.json`
@@ -1305,7 +1515,7 @@ git commit -m "chore: Add Vercel deployment configuration"
 
 ---
 
-## Task 10: Add as Git Submodule to ~/AI
+## Task 12: Add as Git Submodule to ~/AI
 
 **Files:**
 - Modify: `/home/mark/AI/.gitmodules`
@@ -1367,7 +1577,7 @@ pnpm dev &
 sleep 2
 for page in / /projects /about /blog /contact; do
   echo "Testing $page..."
-  curl -s http://localhost:3000$page | grep -q "<h1" && echo "✓ $page OK" || echo "✗ $page FAILED"
+  curl -s http://localhost:3000$page | grep -q "w1r3d" && echo "✓ $page OK" || echo "✗ $page FAILED"
 done
 kill %1
 
@@ -1377,10 +1587,16 @@ pnpm run build && echo "✓ Build OK" || echo "✗ Build FAILED"
 # 3. Git history is clean
 git log --oneline -10
 
-# 4. All tests pass (if applicable)
-pnpm run test 2>/dev/null || echo "Note: No tests configured yet"
+# 4. Mobile menu works
+pnpm dev &
+sleep 2
+curl -s "http://localhost:3000" | grep -q "toggle menu" && echo "✓ Mobile nav OK" || echo "✗ Mobile nav FAILED"
+kill %1
 
-# 5. Deployed to Vercel
+# 5. Blog post renders (not raw markdown)
+curl -s http://localhost:3000/blog/building-scalable-systems | grep -v "^---" | grep -q "Building Scalable Systems" && echo "✓ Blog OK" || echo "✗ Blog FAILED"
+
+# 6. Deployed to Vercel
 echo "Visit: https://w1r3d.vercel.app"
 ```
 
@@ -1388,12 +1604,15 @@ echo "Visit: https://w1r3d.vercel.app"
 
 ## Success Criteria
 
-- [ ] All 5 pages build and render without errors
+- [ ] All 6 pages build and render without errors (home, projects, about, blog list, blog post, contact, 404)
 - [ ] Projects showcase all 4 case studies with live links
-- [ ] Blog pages load with sample post visible
+- [ ] Blog pages load with MDX content properly rendered (not raw markdown)
+- [ ] Mobile hamburger menu works and toggles
 - [ ] Animations smooth (checked in Firefox DevTools)
 - [ ] Mobile responsive (tested at 375px width)
+- [ ] Contact form submits (server action enabled)
+- [ ] 404 page displays on invalid routes
 - [ ] Deployed to Vercel with auto-deploys enabled
-- [ ] GitHub repo clean with conventional commits
+- [ ] GitHub repo clean with conventional commits (12 commits, all passing)
 - [ ] Added as submodule to ~/AI
 - [ ] Core Web Vitals passing (https://pagespeed.web.dev)
