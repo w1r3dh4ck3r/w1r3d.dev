@@ -1,0 +1,30 @@
+---
+title: "Building Scalable Systems with Python and Docker"
+date: "2026-03-04"
+slug: "building-scalable-systems"
+excerpt: "Lessons learned building ANIA, a production-ready autonomous news intelligence agent with Docker, APScheduler, and semantic clustering."
+tags: ["Python", "Docker", "Architecture", "AI"]
+---
+
+# Building Scalable Systems with Python and Docker
+
+When I started building ANIA, I knew I wanted a system that could:
+- Aggregate news from 30+ sources
+- Run reliably in production
+- Scale horizontally if needed
+- Be easy to maintain and debug
+
+This post covers the architectural decisions, key challenges, and how Docker + APScheduler became the backbone of the system.
+
+## Why Docker?
+
+Docker solved three problems for us:
+1. **Dependency hell** — No more "works on my machine"
+2. **Auto-restart** — systemd was fragile; Docker handles it gracefully
+3. **Persistence** — Named volumes for SQLite databases
+
+## Lessons Learned
+
+The biggest win was moving from `nohup` + manual background processes to Docker containers with restart policies. This alone prevented dozens of "agent went down at 2am" incidents.
+
+[Read full post on GitHub](https://github.com/w1r3dh4ck3r/news-agent)

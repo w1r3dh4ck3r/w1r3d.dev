@@ -1,0 +1,70 @@
+[
+  {
+    "id": "gustavoFois",
+    "title": "gustavoFois",
+    "subtitle": "Finance Education Platform",
+    "description": "A comprehensive platform for financial literacy and education. Built with Next.js, featuring interactive lessons, real-time market data, and personalized learning paths for users interested in personal finance and investing.",
+    "techStack": ["Next.js 15", "TypeScript", "Tailwind v4", "Vercel"],
+    "features": [
+      "Interactive financial lessons",
+      "Real-time market integration",
+      "Progress tracking",
+      "Responsive design"
+    ],
+    "liveUrl": "https://gustavoFois.com",
+    "githubUrl": "https://github.com/w1r3dh4ck3r/gustavoFois",
+    "image": "/projects/gustavoFois.png"
+  },
+  {
+    "id": "expira",
+    "title": "Expira",
+    "subtitle": "Product Expiration Tracker (Mobile)",
+    "description": "Cross-platform mobile app for restaurants and food businesses to track product expiration dates, manage inventory, and reduce waste. Features ML-based barcode OCR scanning and real-time synchronization.",
+    "techStack": ["React Native", "Expo", "TypeScript", "Supabase", "PowerSync", "ML Kit"],
+    "features": [
+      "Barcode & QR code scanning",
+      "ML-powered OCR recognition",
+      "Real-time sync across devices",
+      "Expiration alerts",
+      "Waste reports"
+    ],
+    "liveUrl": "https://github.com/w1r3dh4ck3r/expira",
+    "githubUrl": "https://github.com/w1r3dh4ck3r/expira",
+    "image": "/projects/expira.png"
+  },
+  {
+    "id": "ania",
+    "title": "ANIA",
+    "subtitle": "Autonomous News Intelligence Agent",
+    "description": "Sophisticated AI system that aggregates news from 32+ sources, performs semantic clustering, generates summaries using Claude, and delivers personalized digests via Telegram at configurable times. Production-ready with Docker containerization and 83 passing tests.",
+    "techStack": ["Python", "Claude API", "Telegram Bot API", "Docker", "APScheduler", "SQLAlchemy"],
+    "features": [
+      "Multi-source RSS aggregation",
+      "Semantic clustering",
+      "Claude-powered summaries",
+      "Scheduled Telegram digests",
+      "Source credibility weighting",
+      "Docker containerization"
+    ],
+    "liveUrl": "https://github.com/w1r3dh4ck3r/news-agent",
+    "githubUrl": "https://github.com/w1r3dh4ck3r/news-agent",
+    "image": "/projects/ania.png"
+  },
+  {
+    "id": "karolinejangola",
+    "title": "Karolinejangola",
+    "subtitle": "Psychotherapist Portfolio (PT-BR)",
+    "description": "Professional portfolio website for a psychotherapist in Brazil. Bilingual (Portuguese/English), built with GitHub Pages, emphasizing professionalism and accessibility. Showcases services, experience, and contact information.",
+    "techStack": ["HTML", "CSS", "JavaScript", "GitHub Pages"],
+    "features": [
+      "Bilingual content (PT-BR/EN)",
+      "Responsive design",
+      "Service showcase",
+      "Contact integration",
+      "SEO optimized"
+    ],
+    "liveUrl": "https://karolinejangola.com.br",
+    "githubUrl": "https://github.com/w1r3dh4ck3r/karolinejangola",
+    "image": "/projects/karolinejangola.png"
+  }
+]
