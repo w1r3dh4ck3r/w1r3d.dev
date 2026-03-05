@@ -1,0 +1,7 @@
+{
+  "buildCommand": "pnpm run build",
+  "installCommand": "pnpm install",
+  "env": {
+    "NEXT_PUBLIC_SITE_URL": "https://w1r3d.dev"
+  }
+}
