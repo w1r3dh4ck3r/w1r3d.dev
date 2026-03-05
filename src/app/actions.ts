@@ -1,18 +1,18 @@
 'use server';
 
-export async function sendContactEmail(
-  formData: FormData
-): Promise<{ success: boolean; error?: string }> {
-  const name = formData.get('name') as string;
-  const email = formData.get('email') as string;
-  const message = formData.get('message') as string;
+export async function sendContactEmail(formData: FormData) {
+  const name = formData.get('name');
+  const email = formData.get('email');
+  const message = formData.get('message');
 
-  if (!name || !email || !message) {
-    return { success: false, error: 'Missing required fields' };
-  }
-
-  // TODO: Implement email sending (e.g. Resend, Nodemailer)
-  console.log('Contact form submission:', { name, email, message });
+  // Mock implementation - in production, use Resend or SendGrid
+  // await resend.emails.send({
+  //   from: 'noreply@w1r3d.dev',
+  //   to: 'hi@w1r3d.dev',
+  //   replyTo: email as string,
+  //   subject: `New message from ${name}`,
+  //   html: `<p>${message}</p>`,
+  // });
 
   return { success: true };
 }
