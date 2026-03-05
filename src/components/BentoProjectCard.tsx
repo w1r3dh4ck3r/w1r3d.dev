@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Project } from '@/types';
+import BrowserMockup from './BrowserMockup';
 import SpotlightCard from './SpotlightCard';
 
 const cardVariant = {
@@ -41,6 +42,14 @@ export default function BentoProjectCard({ project, size }: BentoProjectCardProp
             </span>
           ))}
         </div>
+
+        {size === 'large' && (
+          <div className="mt-4">
+            <BrowserMockup url={project.liveUrl}>
+              <div className="h-32 bg-gradient-to-br from-emerald-500/10 via-neutral-900 to-neutral-950" />
+            </BrowserMockup>
+          </div>
+        )}
 
         {size === 'large' && (
           <ul className="mt-4 space-y-1">
