@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import ProjectCard from '@/components/ProjectCard';
+import BentoProjectCard from '@/components/BentoProjectCard';
 import StaggerContainer from '@/components/StaggerContainer';
 import projects from '@/data/projects.json';
 
@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   title: 'Projects — w1r3d.dev',
   description: 'Showcase of my featured projects.',
 };
+
+const bentoSizes: Array<'large' | 'medium'> = ['large', 'medium', 'medium', 'large'];
 
 export default function ProjectsPage() {
   return (
@@ -18,9 +20,17 @@ export default function ProjectsPage() {
         </p>
       </div>
 
-      <StaggerContainer className="mt-12 grid gap-6 md:grid-cols-2">
+      <StaggerContainer className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
         {projects.map((project, index) => (
-          <ProjectCard key={project.id} project={project} index={index} />
+          <div
+            key={project.id}
+            className={bentoSizes[index % bentoSizes.length] === 'large' ? 'md:col-span-2' : 'md:col-span-1'}
+          >
+            <BentoProjectCard
+              project={project}
+              size={bentoSizes[index % bentoSizes.length]}
+            />
+          </div>
         ))}
       </StaggerContainer>
     </div>
