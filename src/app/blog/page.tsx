@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import BlogPostCard from '@/components/BlogPostCard';
+import StaggerContainer from '@/components/StaggerContainer';
 import { getAllPosts } from '@/lib/mdx';
 
 export const metadata: Metadata = {
@@ -17,15 +18,15 @@ export default function BlogPage() {
         Technical articles, architecture decisions, and project retrospectives.
       </p>
 
-      <div className="mt-12 space-y-6">
-        {posts.length > 0 ? (
-          posts.map((post, index) => (
+      {posts.length > 0 ? (
+        <StaggerContainer className="mt-12 space-y-6">
+          {posts.map((post, index) => (
             <BlogPostCard key={post.slug} post={post} index={index} />
-          ))
-        ) : (
-          <p className="text-neutral-500">No posts yet. Check back soon!</p>
-        )}
-      </div>
+          ))}
+        </StaggerContainer>
+      ) : (
+        <p className="mt-12 text-neutral-500">No posts yet. Check back soon!</p>
+      )}
     </div>
   );
 }

@@ -89,5 +89,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-image: radial-gradient(oklch(1 0 0 / 0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
   }
 }

@@ -4,6 +4,11 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { BlogPost } from '@/types';
 
+const cardVariant = {
+  hidden: { opacity: 0, x: -20 },
+  show: { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.645, 0.045, 0.355, 1] as const } },
+};
+
 interface BlogPostCardProps {
   post: BlogPost;
   index: number;
@@ -12,9 +17,8 @@ interface BlogPostCardProps {
 export default function BlogPostCard({ post, index }: BlogPostCardProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
+      variants={cardVariant}
+      whileHover={{ x: 6, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
       className="rounded-lg border border-white/10 bg-neutral-900/50 p-6 shadow-sm hover:shadow-md hover:border-emerald-500/30 transition-all"
     >
       <p className="text-sm text-neutral-500">{post.date}</p>

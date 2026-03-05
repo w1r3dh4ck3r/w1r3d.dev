@@ -18,18 +18,22 @@ export default function HeroSection() {
         Building web, mobile, AI systems, and game mods.
       </p>
       <div className="mt-8 flex justify-center gap-4">
-        <Link
-          href="/projects"
-          className="rounded-lg bg-emerald-500 px-6 py-3 font-medium text-black hover:bg-emerald-400 transition-colors"
-        >
-          View My Work
-        </Link>
-        <Link
-          href="/contact"
-          className="rounded-lg border border-white/20 px-6 py-3 font-medium text-neutral-300 hover:border-emerald-500/50 hover:text-white transition-colors"
-        >
-          Get in Touch
-        </Link>
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 400, damping: 25 }}>
+          <Link
+            href="/projects"
+            className="inline-block rounded-lg bg-emerald-500 px-6 py-3 font-medium text-black hover:bg-emerald-400 transition-colors"
+          >
+            View My Work
+          </Link>
+        </motion.div>
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 400, damping: 25 }}>
+          <Link
+            href="/contact"
+            className="inline-block rounded-lg border border-white/20 px-6 py-3 font-medium text-neutral-300 hover:border-emerald-500/50 hover:text-white transition-colors"
+          >
+            Get in Touch
+          </Link>
+        </motion.div>
       </div>
     </motion.div>
   );

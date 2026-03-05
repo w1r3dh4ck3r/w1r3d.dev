@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import ProjectCard from '@/components/ProjectCard';
+import StaggerContainer from '@/components/StaggerContainer';
 import projects from '@/data/projects.json';
 
 export const metadata: Metadata = {
@@ -17,11 +18,11 @@ export default function ProjectsPage() {
         </p>
       </div>
 
-      <div className="mt-12 grid gap-6 md:grid-cols-2">
+      <StaggerContainer className="mt-12 grid gap-6 md:grid-cols-2">
         {projects.map((project, index) => (
           <ProjectCard key={project.id} project={project} index={index} />
         ))}
-      </div>
+      </StaggerContainer>
     </div>
   );
 }

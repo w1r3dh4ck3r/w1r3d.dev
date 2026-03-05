@@ -4,6 +4,11 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Project } from '@/types';
 
+const cardVariant = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.645, 0.045, 0.355, 1] as const } },
+};
+
 interface ProjectCardProps {
   project: Project;
   index: number;
@@ -12,10 +17,8 @@ interface ProjectCardProps {
 export default function ProjectCard({ project, index }: ProjectCardProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-      whileHover={{ y: -8 }}
+      variants={cardVariant}
+      whileHover={{ y: -8, transition: { type: 'spring', stiffness: 400, damping: 25 } }}
       className="rounded-lg border border-white/10 bg-neutral-900/50 p-6 shadow-sm hover:shadow-lg hover:border-emerald-500/30 hover:shadow-emerald-500/5 transition-all"
     >
       <h3 className="text-xl font-bold text-white">{project.title}</h3>
