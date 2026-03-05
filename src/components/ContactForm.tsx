@@ -40,7 +40,7 @@ export default function ContactForm() {
           setFormData({ ...formData, name: e.target.value })
         }
         required
-        className="w-full rounded-lg border border-gray-300 px-4 py-2"
+        className="w-full rounded-lg border border-white/10 bg-neutral-900 px-4 py-2 text-white placeholder:text-neutral-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/20"
       />
       <input
         type="email"
@@ -51,7 +51,7 @@ export default function ContactForm() {
           setFormData({ ...formData, email: e.target.value })
         }
         required
-        className="w-full rounded-lg border border-gray-300 px-4 py-2"
+        className="w-full rounded-lg border border-white/10 bg-neutral-900 px-4 py-2 text-white placeholder:text-neutral-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/20"
       />
       <textarea
         name="message"
@@ -62,18 +62,18 @@ export default function ContactForm() {
         }
         required
         rows={4}
-        className="w-full rounded-lg border border-gray-300 px-4 py-2"
+        className="w-full rounded-lg border border-white/10 bg-neutral-900 px-4 py-2 text-white placeholder:text-neutral-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/20"
       />
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="w-full rounded-lg bg-blue-600 py-2 text-white font-medium hover:bg-blue-700 disabled:opacity-50"
+        className="w-full rounded-lg bg-emerald-500 py-2 text-black font-medium hover:bg-emerald-400 disabled:opacity-50"
       >
         {status === 'loading' ? 'Sending...' : 'Send message'}
       </button>
 
       {status === 'success' && (
-        <p className="text-green-600 text-sm">Message received! I'll get back to you soon.</p>
+        <p className="text-emerald-400 text-sm">Message received! I'll get back to you soon.</p>
       )}
       {status === 'error' && (
         <p className="text-red-600 text-sm">Error sending message. Please try again.</p>
