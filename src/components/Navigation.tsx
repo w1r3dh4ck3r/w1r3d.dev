@@ -16,11 +16,11 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-sm">
+    <nav className="sticky top-0 z-50 border-b border-white/10 bg-black/80 backdrop-blur-md">
       <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            <Link href="/" className="text-xl font-bold text-gray-900">
+            <Link href="/" className="text-xl font-bold text-white">
               w1r3d.dev
             </Link>
           </motion.div>
@@ -31,7 +31,7 @@ export default function Navigation() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-gray-600 hover:text-gray-900 transition-colors font-medium"
+                  className="text-neutral-400 hover:text-emerald-400 transition-colors font-medium"
                 >
                   {link.name}
                 </Link>
@@ -42,7 +42,7 @@ export default function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="sm:hidden inline-flex items-center gap-2 text-gray-600 hover:text-gray-900"
+            className="sm:hidden inline-flex items-center gap-2 text-neutral-400 hover:text-white"
             aria-label="Toggle menu"
           >
             <svg
@@ -74,7 +74,7 @@ export default function Navigation() {
                 <Link
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block text-gray-600 hover:text-gray-900 py-2 font-medium"
+                  className="block text-neutral-400 hover:text-emerald-400 py-2 font-medium"
                 >
                   {link.name}
                 </Link>
