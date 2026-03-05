@@ -31,43 +31,61 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
-      <input
-        type="text"
-        name="name"
-        placeholder="Your name"
-        value={formData.name}
-        onChange={(e) =>
-          setFormData({ ...formData, name: e.target.value })
-        }
-        required
-        className="w-full rounded-lg border border-white/10 bg-neutral-900 px-4 py-2 text-white placeholder:text-neutral-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/20"
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="your@email.com"
-        value={formData.email}
-        onChange={(e) =>
-          setFormData({ ...formData, email: e.target.value })
-        }
-        required
-        className="w-full rounded-lg border border-white/10 bg-neutral-900 px-4 py-2 text-white placeholder:text-neutral-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/20"
-      />
-      <textarea
-        name="message"
-        placeholder="Your message"
-        value={formData.message}
-        onChange={(e) =>
-          setFormData({ ...formData, message: e.target.value })
-        }
-        required
-        rows={4}
-        className="w-full rounded-lg border border-white/10 bg-neutral-900 px-4 py-2 text-white placeholder:text-neutral-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/20"
-      />
+      <div>
+        <label htmlFor="contact-name" className="block text-sm font-medium text-neutral-300 mb-1">
+          Name
+        </label>
+        <input
+          id="contact-name"
+          type="text"
+          name="name"
+          placeholder="Your name"
+          value={formData.name}
+          onChange={(e) =>
+            setFormData({ ...formData, name: e.target.value })
+          }
+          required
+          className="w-full rounded-lg border border-white/10 bg-neutral-900 px-4 py-2 text-white placeholder:text-neutral-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/20"
+        />
+      </div>
+      <div>
+        <label htmlFor="contact-email" className="block text-sm font-medium text-neutral-300 mb-1">
+          Email
+        </label>
+        <input
+          id="contact-email"
+          type="email"
+          name="email"
+          placeholder="your@email.com"
+          value={formData.email}
+          onChange={(e) =>
+            setFormData({ ...formData, email: e.target.value })
+          }
+          required
+          className="w-full rounded-lg border border-white/10 bg-neutral-900 px-4 py-2 text-white placeholder:text-neutral-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/20"
+        />
+      </div>
+      <div>
+        <label htmlFor="contact-message" className="block text-sm font-medium text-neutral-300 mb-1">
+          Message
+        </label>
+        <textarea
+          id="contact-message"
+          name="message"
+          placeholder="Your message"
+          value={formData.message}
+          onChange={(e) =>
+            setFormData({ ...formData, message: e.target.value })
+          }
+          required
+          rows={4}
+          className="w-full rounded-lg border border-white/10 bg-neutral-900 px-4 py-2 text-white placeholder:text-neutral-500 focus:border-emerald-500/50 focus:outline-none focus:ring-1 focus:ring-emerald-500/20"
+        />
+      </div>
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="w-full rounded-lg bg-emerald-500 py-2 text-black font-medium hover:bg-emerald-400 disabled:opacity-50"
+        className="w-full rounded-lg bg-emerald-500 py-2 text-black font-medium hover:bg-emerald-400 disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400"
       >
         {status === 'loading' ? 'Sending...' : 'Send message'}
       </button>

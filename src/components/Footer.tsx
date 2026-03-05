@@ -31,6 +31,12 @@ export default function Footer() {
             >
               Email
             </a>
+            <a
+              href="/feed.xml"
+              className="text-neutral-500 hover:text-emerald-400"
+            >
+              RSS
+            </a>
           </div>
           <p className="text-sm text-neutral-600">
             © {currentYear} w1r3d. All rights reserved.
