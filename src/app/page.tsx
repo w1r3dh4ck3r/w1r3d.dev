@@ -14,27 +14,27 @@ export default function Home() {
 
       {/* Featured Project */}
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-gray-900">Featured Project</h2>
-        <p className="mt-2 text-gray-600">
+        <h2 className="text-3xl font-bold text-white">Featured Project</h2>
+        <p className="mt-2 text-neutral-400">
           {featuredProject.subtitle}
         </p>
-        <div className="mt-6 rounded-lg border border-gray-200 bg-gray-50 p-8">
-          <h3 className="text-2xl font-bold text-gray-900">
+        <div className="mt-6 rounded-lg border border-white/10 bg-neutral-900/50 p-8">
+          <h3 className="text-2xl font-bold text-white">
             {featuredProject.title}
           </h3>
-          <p className="mt-3 text-gray-700">{featuredProject.description}</p>
+          <p className="mt-3 text-neutral-400">{featuredProject.description}</p>
           <div className="mt-6 flex gap-3">
             <Link
               href={featuredProject.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 hover:text-blue-700 font-medium"
+              className="text-emerald-400 hover:text-emerald-300 font-medium"
             >
               View Project →
             </Link>
             <Link
               href="/projects"
-              className="text-gray-600 hover:text-gray-900 font-medium"
+              className="text-neutral-500 hover:text-white font-medium"
             >
               See all projects →
             </Link>
@@ -44,13 +44,13 @@ export default function Home() {
 
       {/* CTA Section */}
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl font-bold text-gray-900">Ready to build something?</h2>
-        <p className="mt-3 text-lg text-gray-600">
+        <h2 className="text-3xl font-bold text-white">Ready to build something?</h2>
+        <p className="mt-3 text-lg text-neutral-400">
           Let's talk about your next project.
         </p>
         <Link
           href="/contact"
-          className="mt-6 inline-block rounded-lg bg-blue-600 px-6 py-3 font-medium text-white hover:bg-blue-700"
+          className="mt-6 inline-block rounded-lg bg-emerald-500 px-6 py-3 font-medium text-black hover:bg-emerald-400"
         >
           Start a conversation
         </Link>
