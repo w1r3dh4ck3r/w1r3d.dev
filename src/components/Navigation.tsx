@@ -2,10 +2,12 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const links = [
     { name: 'Home', href: '/' },
@@ -27,16 +29,38 @@ export default function Navigation() {
 
           {/* Desktop Navigation */}
           <ul className="hidden sm:flex gap-8">
-            {links.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="text-neutral-400 hover:text-emerald-400 transition-colors font-medium"
-                >
-                  {link.name}
-                </Link>
-              </li>
-            ))}
+            {links.map((link) => {
+              const isActive =
+                link.href === '/'
+                  ? pathname === '/'
+                  : pathname.startsWith(link.href);
+
+              return (
+                <li key={link.href} className="relative">
+                  <Link
+                    href={link.href}
+                    className={`transition-colors font-medium ${
+                      isActive
+                        ? 'text-emerald-400'
+                        : 'text-neutral-400 hover:text-emerald-400'
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                  {isActive && (
+                    <motion.div
+                      layoutId="nav-underline"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-emerald-400 rounded-full"
+                      transition={{
+                        type: 'spring',
+                        stiffness: 350,
+                        damping: 30,
+                      }}
+                    />
+                  )}
+                </li>
+              );
+            })}
           </ul>
 
           {/* Mobile Menu Button */}
