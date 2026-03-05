@@ -41,18 +41,18 @@ export default async function BlogPostPage({
 
   return (
     <article className="mx-auto max-w-2xl px-4 py-20 sm:px-6 lg:px-8">
-      <Link href="/blog" className="text-blue-600 hover:text-blue-700">
+      <Link href="/blog" className="text-emerald-400 hover:text-emerald-300">
         ← Back to blog
       </Link>
 
       <header className="mt-8">
-        <h1 className="text-4xl font-bold text-gray-900">{post.title}</h1>
-        <p className="mt-2 text-gray-600">{post.date}</p>
+        <h1 className="text-4xl font-bold text-white">{post.title}</h1>
+        <p className="mt-2 text-neutral-500">{post.date}</p>
         <div className="mt-4 flex flex-wrap gap-2">
           {post.tags?.map((tag: string) => (
             <span
               key={tag}
-              className="bg-blue-50 text-blue-700 px-3 py-1 rounded text-sm"
+              className="bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded text-sm"
             >
               {tag}
             </span>
@@ -60,7 +60,7 @@ export default async function BlogPostPage({
         </div>
       </header>
 
-      <div className="prose prose-sm max-w-none mt-8">
+      <div className="prose prose-sm prose-invert max-w-none mt-8 prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:text-emerald-300 prose-code:text-emerald-300 prose-pre:bg-neutral-900 prose-pre:border prose-pre:border-white/10">
         <MDXRemote source={post.content} />
       </div>
     </article>

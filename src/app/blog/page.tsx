@@ -12,8 +12,8 @@ export default function BlogPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
-      <h1 className="text-4xl font-bold text-gray-900">Blog</h1>
-      <p className="mt-4 text-lg text-gray-600">
+      <h1 className="text-4xl font-bold text-white">Blog</h1>
+      <p className="mt-4 text-lg text-neutral-400">
         Technical articles, architecture decisions, and project retrospectives.
       </p>
 
@@ -23,7 +23,7 @@ export default function BlogPage() {
             <BlogPostCard key={post.slug} post={post} index={index} />
           ))
         ) : (
-          <p className="text-gray-600">No posts yet. Check back soon!</p>
+          <p className="text-neutral-500">No posts yet. Check back soon!</p>
         )}
       </div>
     </div>

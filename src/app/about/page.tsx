@@ -20,8 +20,8 @@ export default function AboutPage() {
     <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 space-y-16">
       {/* Bio Section */}
       <section>
-        <h1 className="text-4xl font-bold text-gray-900">About Me</h1>
-        <div className="mt-6 space-y-4 text-gray-700">
+        <h1 className="text-4xl font-bold text-white">About Me</h1>
+        <div className="mt-6 space-y-4 text-neutral-400">
           <p>
             I'm a full-stack engineer with a passion for building scalable systems, from
             web and mobile applications to AI-powered backends. I thrive on solving
@@ -41,16 +41,16 @@ export default function AboutPage() {
 
       {/* Skills Section */}
       <section>
-        <h2 className="text-2xl font-bold text-gray-900">Skills & Tools</h2>
+        <h2 className="text-2xl font-bold text-white">Skills & Tools</h2>
         <div className="mt-8 grid gap-8 md:grid-cols-2">
           {Object.entries(skills).map(([category, items]) => (
             <div key={category}>
-              <h3 className="font-semibold text-gray-900">{category}</h3>
+              <h3 className="font-semibold text-neutral-300">{category}</h3>
               <div className="mt-3 flex flex-wrap gap-2">
                 {items.map((skill) => (
                   <span
                     key={skill}
-                    className="rounded-full bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700"
+                    className="rounded-full bg-emerald-500/10 px-4 py-2 text-sm font-medium text-emerald-400"
                   >
                     {skill}
                   </span>
@@ -63,7 +63,7 @@ export default function AboutPage() {
 
       {/* Testimonials Section */}
       <section>
-        <h2 className="text-2xl font-bold text-gray-900">What Others Say</h2>
+        <h2 className="text-2xl font-bold text-white">What Others Say</h2>
         <div className="mt-8 grid gap-6 md:grid-cols-2">
           {testimonials.map((testimonial, index) => (
             <TestimonialCard
