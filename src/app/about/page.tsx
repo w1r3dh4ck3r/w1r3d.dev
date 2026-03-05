@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 import TestimonialCard from '@/components/TestimonialCard';
 import testimonials from '@/data/testimonials.json';
 
@@ -25,10 +26,13 @@ export default function AboutPage() {
           {/* Profile Picture */}
           <div className="shrink-0 mx-auto md:mx-0">
             <div className="relative w-48 h-48 rounded-2xl overflow-hidden border-2 border-white/10">
-              <img
+              <Image
                 src="/profile.svg"
                 alt="Profile photo"
+                width={192}
+                height={192}
                 className="w-full h-full object-cover"
+                priority
               />
               <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10" />
             </div>

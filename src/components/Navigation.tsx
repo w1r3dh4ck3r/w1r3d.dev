@@ -23,7 +23,7 @@ export default function Navigation() {
       <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            <Link href="/" className="text-xl font-bold text-white font-mono tracking-tight">
+            <Link href="/" className="text-xl font-bold text-white font-mono tracking-tight rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400">
               <GlitchText text="w1r3d.dev" />
             </Link>
           </motion.div>
@@ -40,7 +40,7 @@ export default function Navigation() {
                 <li key={link.href} className="relative">
                   <Link
                     href={link.href}
-                    className={`transition-colors font-medium ${
+                    className={`transition-colors font-medium rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 ${
                       isActive
                         ? 'text-emerald-400'
                         : 'text-neutral-400 hover:text-emerald-400'
@@ -67,7 +67,7 @@ export default function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="sm:hidden inline-flex items-center gap-2 text-neutral-400 hover:text-white"
+            className="sm:hidden inline-flex items-center gap-2 text-neutral-400 hover:text-white rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400"
             aria-label="Toggle menu"
           >
             <svg
@@ -99,7 +99,7 @@ export default function Navigation() {
                 <Link
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block text-neutral-400 hover:text-emerald-400 py-2 font-medium"
+                  className="block text-neutral-400 hover:text-emerald-400 py-2 font-medium rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400"
                 >
                   {link.name}
                 </Link>
