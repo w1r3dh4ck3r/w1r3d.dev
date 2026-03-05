@@ -71,6 +71,7 @@ export default function FeaturedCarousel() {
       <div className="flex items-center justify-center gap-4 mt-6">
         <button
           onClick={goPrev}
+          aria-label="Previous project"
           className="text-neutral-500 hover:text-emerald-400 transition-colors"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -79,11 +80,12 @@ export default function FeaturedCarousel() {
         </button>
 
         <div className="flex gap-2 items-center">
-          {projects.map((_, index) => (
+          {projects.map((p, index) => (
             <button
               key={index}
               onClick={() => setActiveIndex(index)}
-              className={`w-2 h-2 rounded-full transition-colors ${
+              aria-label={`Go to project ${index + 1}: ${p.title}`}
+              className={`w-4 h-4 rounded-full transition-colors ${
                 index === activeIndex
                   ? 'bg-emerald-500'
                   : 'bg-neutral-600 hover:bg-neutral-500'
@@ -94,6 +96,7 @@ export default function FeaturedCarousel() {
 
         <button
           onClick={goNext}
+          aria-label="Next project"
           className="text-neutral-500 hover:text-emerald-400 transition-colors"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
