@@ -22,8 +22,17 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${post.title} — w1r3d.dev`,
+    title: post.title,
     description: post.excerpt,
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: 'article',
+      publishedTime: post.date,
+    },
   };
 }
 
@@ -39,8 +48,22 @@ export default async function BlogPostPage({
     notFound();
   }
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    datePublished: post.date,
+    description: post.excerpt,
+    author: { '@type': 'Person', name: 'w1r3d', url: 'https://w1r3d.dev' },
+    url: `https://w1r3d.dev/blog/${slug}`,
+  };
+
   return (
     <article className="mx-auto max-w-2xl px-4 py-20 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Link href="/blog" className="text-emerald-400 hover:text-emerald-300">
         ← Back to blog
       </Link>
