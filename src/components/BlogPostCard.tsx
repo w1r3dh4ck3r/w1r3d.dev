@@ -15,20 +15,20 @@ export default function BlogPostCard({ post, index }: BlogPostCardProps) {
       initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
-      className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow"
+      className="rounded-lg border border-white/10 bg-neutral-900/50 p-6 shadow-sm hover:shadow-md hover:border-emerald-500/30 transition-all"
     >
-      <p className="text-sm text-gray-500">{post.date}</p>
+      <p className="text-sm text-neutral-500">{post.date}</p>
       <Link href={`/blog/${post.slug}`}>
-        <h3 className="mt-1 text-lg font-bold text-gray-900 hover:text-blue-600">
+        <h3 className="mt-1 text-lg font-bold text-white hover:text-emerald-400">
           {post.title}
         </h3>
       </Link>
-      <p className="mt-2 text-gray-600">{post.excerpt}</p>
+      <p className="mt-2 text-neutral-400">{post.excerpt}</p>
       <div className="mt-3 flex flex-wrap gap-2">
         {post.tags.map((tag) => (
           <span
             key={tag}
-            className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded"
+            className="text-xs bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded"
           >
             {tag}
           </span>
@@ -36,7 +36,7 @@ export default function BlogPostCard({ post, index }: BlogPostCardProps) {
       </div>
       <Link
         href={`/blog/${post.slug}`}
-        className="mt-4 inline-block text-blue-600 hover:text-blue-700 font-medium text-sm"
+        className="mt-4 inline-block text-emerald-400 hover:text-emerald-300 font-medium text-sm"
       >
         Read more →
       </Link>

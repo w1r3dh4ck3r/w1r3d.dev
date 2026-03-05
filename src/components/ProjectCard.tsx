@@ -16,17 +16,17 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
       whileHover={{ y: -8 }}
-      className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm hover:shadow-lg transition-all"
+      className="rounded-lg border border-white/10 bg-neutral-900/50 p-6 shadow-sm hover:shadow-lg hover:border-emerald-500/30 hover:shadow-emerald-500/5 transition-all"
     >
-      <h3 className="text-xl font-bold text-gray-900">{project.title}</h3>
-      <p className="mt-1 text-sm text-gray-500">{project.subtitle}</p>
-      <p className="mt-3 text-gray-700">{project.description}</p>
+      <h3 className="text-xl font-bold text-white">{project.title}</h3>
+      <p className="mt-1 text-sm text-neutral-500">{project.subtitle}</p>
+      <p className="mt-3 text-neutral-400">{project.description}</p>
 
       <div className="mt-4 flex flex-wrap gap-2">
         {project.techStack.map((tech) => (
           <span
             key={tech}
-            className="inline-block rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700"
+            className="inline-block rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-400"
           >
             {tech}
           </span>
@@ -35,7 +35,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
 
       <ul className="mt-4 space-y-1">
         {project.features.map((feature) => (
-          <li key={feature} className="text-sm text-gray-600">
+          <li key={feature} className="text-sm text-neutral-500">
             • {feature}
           </li>
         ))}
@@ -46,7 +46,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           href={project.liveUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-600 hover:text-blue-700 font-medium text-sm"
+          className="text-emerald-400 hover:text-emerald-300 font-medium text-sm"
         >
           View Project →
         </Link>
@@ -54,7 +54,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           href={project.githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-600 hover:text-gray-700 font-medium text-sm"
+          className="text-neutral-500 hover:text-white font-medium text-sm"
         >
           GitHub
         </Link>
