@@ -1,5 +1,22 @@
 [
   {
+    "id": "karolinejangola",
+    "title": "Karolinejangola",
+    "subtitle": "Psychotherapist Portfolio (PT-BR)",
+    "description": "Professional portfolio website for a psychotherapist in Brazil. Bilingual (Portuguese/English), built with GitHub Pages, emphasizing professionalism and accessibility. Showcases services, experience, and contact information.",
+    "techStack": ["HTML", "CSS", "JavaScript", "GitHub Pages"],
+    "features": [
+      "Bilingual content (PT-BR/EN)",
+      "Responsive design",
+      "Service showcase",
+      "Contact integration",
+      "SEO optimized"
+    ],
+    "liveUrl": "https://karolinejangola.com.br",
+    "githubUrl": "https://github.com/w1r3dh4ck3r/karolinejangola",
+    "image": "/projects/karolinejangola.png"
+  },
+  {
     "id": "gustavoFois",
     "title": "gustavoFois",
     "subtitle": "Finance Education Platform",
@@ -49,22 +66,5 @@
     "liveUrl": "https://github.com/w1r3dh4ck3r/news-agent",
     "githubUrl": "https://github.com/w1r3dh4ck3r/news-agent",
     "image": "/projects/ania.png"
-  },
-  {
-    "id": "karolinejangola",
-    "title": "Karolinejangola",
-    "subtitle": "Psychotherapist Portfolio (PT-BR)",
-    "description": "Professional portfolio website for a psychotherapist in Brazil. Bilingual (Portuguese/English), built with GitHub Pages, emphasizing professionalism and accessibility. Showcases services, experience, and contact information.",
-    "techStack": ["HTML", "CSS", "JavaScript", "GitHub Pages"],
-    "features": [
-      "Bilingual content (PT-BR/EN)",
-      "Responsive design",
-      "Service showcase",
-      "Contact integration",
-      "SEO optimized"
-    ],
-    "liveUrl": "https://karolinejangola.com.br",
-    "githubUrl": "https://github.com/w1r3dh4ck3r/karolinejangola",
-    "image": "/projects/karolinejangola.png"
   }
 ]
