@@ -76,7 +76,7 @@ export default function ContactForm() {
         <p className="text-emerald-400 text-sm">Message received! I'll get back to you soon.</p>
       )}
       {status === 'error' && (
-        <p className="text-red-600 text-sm">Error sending message. Please try again.</p>
+        <p className="text-red-400 text-sm">Error sending message. Please try again.</p>
       )}
     </form>
   );
