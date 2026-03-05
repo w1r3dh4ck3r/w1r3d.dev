@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
+import GlitchText from './GlitchText';
 
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -22,8 +23,8 @@ export default function Navigation() {
       <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            <Link href="/" className="text-xl font-bold text-white">
-              w1r3d.dev
+            <Link href="/" className="text-xl font-bold text-white font-mono tracking-tight">
+              <GlitchText text="w1r3d.dev" />
             </Link>
           </motion.div>
 
