@@ -4,6 +4,7 @@ import projects from '@/data/projects.json'
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
+import BorderBeam from './BorderBeam'
 
 export default function FeaturedCarousel() {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -31,10 +32,11 @@ export default function FeaturedCarousel() {
 
   return (
     <div
-      className="rounded-lg border border-white/10 bg-neutral-900/50 p-8"
+      className="relative rounded-lg border border-white/10 bg-neutral-900/50 p-8"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
+      <BorderBeam />
       <AnimatePresence mode="wait">
         <motion.div
           key={activeIndex}
